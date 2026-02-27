@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint Portfolio | AI & Web Enthusiast</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP CDNs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Preloader Glitch Prevention -->
+    <script>
+        (function () {
+            // Initial Theme Sync
+            const isDarkMode = localStorage.getItem('theme') === 'dark';
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark-mode', 'dark');
+            }
+
+            if (sessionStorage.getItem('isNavigating') === 'true') {
+                document.documentElement.classList.add('is-navigating');
+                const style = document.createElement('style');
+                style.innerHTML = '#preloader { display: none !important; }';
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
+</head>
+
+<body class="antialiased font-sans">
+    <!-- Tailwind and Logic Script -->
+    <script src="js/script.js"></script>
+    <div class="grid-overlay"></div>
+    <div id="scroll-progress"></div>
+
+
+    <div id="cursor-follower">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="mb-4 font-syne font-bold text-xs tracking-[0.5em] uppercase opacity-50">Initializing System</div>
+        <div id="preloader-bar-bg">
+            <div id="preloader-bar"></div>
+        </div>
+        <div id="preloader-percent" class="mt-4 font-syne font-black text-2xl">00</div>
+    </div>
+
+    <!-- Page Transition Overlay -->
+    <div id="page-transition">
+        <div class="transition-grid"></div>
+        <div class="loader-text uppercase">Architecting...</div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div id="theme-toggle" class="interactive magnetic">
+        <div class="w-2 h-2 rounded-full bg-blueprint-accent"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-6 md:py-8 transition-colors duration-500"
+        id="navbar">
+        <div class="font-syne font-black text-xl tracking-tighter interactive magnetic">BP.EXPLORER</div>
+        <div class="hidden md:flex gap-10 font-sans text-[10px] font-bold tracking-[0.3em] uppercase">
+            <a href="#home" class="nav-link py-1 interactive">01 HOME</a>
+            <a href="#about" class="nav-link py-1 interactive">02 ABOUT</a>
+            <a href="#stack" class="nav-link py-1 interactive">03 STACK</a>
+            <a href="#path" class="nav-link py-1 interactive">04 PATH</a>
+            <a href="#lab" class="nav-link py-1 interactive">05 LAB</a>
+            <a href="#work" class="nav-link py-1 interactive">06 WORK</a>
+            <a href="#dossier" class="nav-link py-1 interactive">07 DOSSIER</a>
+            <a href="#talk" class="nav-link py-1 interactive">08 TALK</a>
+        </div>
+        <div class="md:hidden interactive magnetic" id="mobile-toggle">
+            <div class="w-6 h-[1px] bg-current mb-1.5"></div>
+            <div class="w-6 h-[1px] bg-current"></div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="opacity-0">
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <!-- Schematic Layers -->
+            <div class="schematic-layer">
+                <svg width="100%" height="100%" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="opacity-20">
+                    <path d="M0 100H1000M0 900H1000M100 0V1000M900 0V1000" stroke="currentColor" stroke-width="0.5" />
+                    <circle cx="500" cy="500" r="400" stroke="currentColor" stroke-width="0.5"
+                        stroke-dasharray="10 10" />
+                    <rect x="250" y="250" width="500" height="500" stroke="currentColor" stroke-width="0.5" />
+                </svg>
+            </div>
+            <div class="container-custom relative z-10 mt-20">
+                <div class="personnel-id scroll-reveal">
+                    <span>PERSONNEL_ID //</span> YOGA ANNANDA
+                </div>
+                <div
+                    class="mb-4 md:mb-8 font-syne font-bold text-[10px] md:text-xs tracking-[0.4em] uppercase opacity-40 scroll-reveal max-w-sm leading-relaxed">
+                    Building intelligent systems <br> with modern web stacks.</div>
+                <div class="oversized-text font-syne font-black flex flex-col">
+                    <span class="block split-word uppercase tracking-tighter">AI & WEB</span>
+                    <span class="block text-blueprint-accent split-word uppercase tracking-tighter">DEVELOPER</span>
+                </div>
+            </div>
+            <div class="container-custom absolute left-0 right-0 bottom-10 md:bottom-20 pointer-events-none">
+                <div
+                    class="text-right font-sans text-[8px] md:text-[10px] font-medium tracking-[0.2em] uppercase opacity-30 select-none">
+                    3.4542° N, 10.9821° E <br>
+                    EST. // SYSTEM.ACTIVE
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="section-padding border-t border-blueprint-grid">
+            <div class="container-custom">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                    <div class="md:col-span-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="font-syne font-bold text-[10px] md:text-xs tracking-[0.4em] uppercase opacity-40 mb-6 md:mb-10">
+                                02 // ABOUT
+                                ME</div>
+                            <h2
+                                class="text-4xl md:text-6xl font-syne font-black leading-none mb-10 scroll-reveal text-blueprint-accent uppercase">
+                                BEYOND THE <br> BINARY.</h2>
+                        </div>
+                    </div>
+                    <div class="md:col-span-8">
+                        <p
+                            class="text-2xl md:text-5xl font-syne font-medium leading-tight mb-12 md:mb-20 scroll-reveal">
+                            Computer Engineering graduate from <span class="text-highlight">PENS</span> specializing in
+                            the synergy of
+                            <span class="text-highlight">Deep Learning</span> and <span
+                                class="text-highlight">Full-stack development</span>. I build <span
+                                class="italic font-black">scalable solutions</span> that bridge complex algorithms with
+                            intuitive web interfaces.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-20">
+                            <div class="scroll-reveal">
+                                <h4 class="font-syne font-bold text-xs tracking-[0.2em] uppercase mb-4 opacity-50">The
+                                    Vision</h4>
+                                <p class="text-zinc-500 leading-relaxed font-medium">To humanize AI through seamless
+                                    digital experiences.</p>
+                            </div>
+                            <div class="scroll-reveal">
+                                <h4 class="font-syne font-bold text-xs tracking-[0.2em] uppercase mb-4 opacity-50">The
+                                    Approach</h4>
+                                <p class="text-zinc-500 leading-relaxed font-medium">Data-driven, performance-focused,
+                                    and aesthetic-first.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stack Section (Velocity Model) -->
+        <section id="stack" class="py-20 border-t border-blueprint-grid bg-[var(--blueprint-grid)] overflow-hidden">
+            <div class="font-syne font-bold text-xs tracking-[0.4em] uppercase opacity-40 mb-16 text-center">03 // THE
+                ENGINE STACK</div>
+
+            <!-- Web Architecture Track -->
+            <div class="velocity-container flex whitespace-nowrap mb-4">
+                <div class="velocity-track-web flex gap-20 items-center py-6">
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        LARAVEL
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        NODE.JS
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        BOOTSTRAP
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        TAILWIND
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        MYSQL
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        DOCKER
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        LARAVEL
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        NODE.JS
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        BOOTSTRAP
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        TAILWIND
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        MYSQL
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive">
+                        DOCKER
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Development Track -->
+            <div class="velocity-container flex whitespace-nowrap">
+                <div class="velocity-track-ai flex gap-20 items-center py-6">
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive text-blueprint-accent">
+                        TENSORFLOW
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive text-blueprint-accent">
+                        PYTHON
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive text-blueprint-accent">
+                        PYTORCH
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive text-blueprint-accent">
+                        OPENAI
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive text-blueprint-accent">
+                        TENSORFLOW
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive text-blueprint-accent">
+                        PYTHON
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive text-blueprint-accent">
+                        PYTORCH
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-5xl md:text-7xl font-syne font-black opacity-20 hover:opacity-100 transition-opacity interactive text-blueprint-accent">
+                        OPENAI
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Path Section -->
+        <section id="path" class="section-padding border-t border-blueprint-grid">
+            <div class="container-custom">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                    <div class="md:col-span-5 sticky top-40 h-fit">
+                        <div class="font-syne font-bold text-[10px] tracking-[0.4em] uppercase opacity-40 mb-10">04 //
+                            PATH
+                        </div>
+                        <h2
+                            class="text-3xl lg:text-4xl font-syne font-black leading-none mb-10 split-word uppercase pr-10">
+                            EVOLUTIONARY <br>
+                            TRAJECTORY.
+                        </h2>
+                    </div>
+                    <div class="md:col-span-7 flex flex-col gap-16 md:gap-32 relative md:pl-12 mt-12 md:mt-0">
+                        <div class="timeline-line hidden md:block"></div>
+
+                        <!-- Education 1 -->
+                        <div class="flex flex-col md:flex-row gap-6 path-item scroll-reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="text-blueprint-accent font-syne font-black text-2xl w-24 shrink-0">2020</div>
+                            <div class="flex-1">
+                                <h4 class="font-syne font-bold text-base uppercase mb-4">Master of Computer Science (AI)
+                                </h4>
+                                <p class="text-zinc-500 font-bold mb-2 uppercase text-[9px] tracking-widest">Global Tech
+                                    Institute</p>
+                                <p class="text-zinc-500 leading-relaxed font-medium text-sm max-w-xl">Deep research into
+                                    neural networks and automated web scaling protocols.</p>
+                            </div>
+                        </div>
+
+                        <!-- Education 2 -->
+                        <div class="flex flex-col md:flex-row gap-6 path-item scroll-reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="text-blueprint-accent font-syne font-black text-2xl w-24 shrink-0">2018</div>
+                            <div class="flex-1">
+                                <h4 class="font-syne font-bold text-base uppercase mb-4">Bachelor of Information Systems
+                                </h4>
+                                <p class="text-zinc-500 font-bold mb-2 uppercase text-[9px] tracking-widest">Innovation
+                                    University</p>
+                                <p class="text-zinc-500 leading-relaxed font-medium text-sm max-w-xl">Foundation in
+                                    full-stack engineering and information hierarchy design.</p>
+                            </div>
+                        </div>
+
+                        <!-- Professional -->
+                        <div class="flex flex-col md:flex-row gap-6 path-item scroll-reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="text-blueprint-accent font-syne font-black text-2xl w-24 shrink-0">2024</div>
+                            <div class="flex-1">
+                                <h4 class="font-syne font-bold text-base uppercase mb-4">Lead AI Systems Engineer</h4>
+                                <p class="text-zinc-500 leading-relaxed font-medium text-sm max-w-xl">Spearheading
+                                    AI-powered web solutions for next-generation enterprise platforms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="work" class="section-padding border-t border-blueprint-grid">
+            <div class="container-custom">
+                <div class="flex justify-between items-end mb-16 md:mb-32">
+                    <div>
+                        <div class="font-syne font-bold text-xs tracking-[0.4em] uppercase opacity-40 mb-10">06 //
+                            WORK</div>
+                        <h2
+                            class="text-4xl md:text-8xl font-syne font-black leading-none mb-10 scroll-reveal uppercase">
+                            SELECTED
+                            <br> WORKS.
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-20">
+                    <!-- Project 1 -->
+                    <div class="md:col-span-8 group interactive">
+                        <div class="relative overflow-hidden aspect-video bg-zinc-200 mb-8">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
+                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-100 grayscale hover:grayscale-0">
+                            <div class="absolute inset-0 border border-blueprint-grid"></div>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-4xl font-syne font-bold mb-2 uppercase">OEE MONITORING SYSTEM</h3>
+                                <p class="font-sans text-[10px] font-bold tracking-[0.2em] uppercase opacity-50">
+                                    INDUSTRIAL
+                                    IOT // 2024</p>
+                            </div>
+                            <a href="oee-monitoring.html"
+                                class="w-12 h-12 border border-blueprint-accent rounded-full flex items-center justify-center transform group-hover:rotate-45 transition-transform duration-500 interactive magnetic shrink-0">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-blueprint-accent"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="md:col-span-4 md:mt-40 group interactive">
+                        <div class="relative overflow-hidden aspect-[3/4] bg-zinc-200 mb-8">
+                            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=2070&auto=format&fit=crop"
+                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-100 grayscale hover:grayscale-0">
+                            <div class="absolute inset-0 border border-blueprint-grid"></div>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-4xl font-syne font-bold mb-2 uppercase">IT SUPPORT TICKETING</h3>
+                                <p class="font-sans text-[10px] font-bold tracking-[0.2em] uppercase opacity-50">
+                                    INTERNAL
+                                    SYSTEM // 2023</p>
+                            </div>
+                            <a href="it-ticketing.html"
+                                class="w-12 h-12 border border-blueprint-accent rounded-full flex items-center justify-center transform group-hover:rotate-45 transition-transform duration-500 interactive shrink-0">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-blueprint-accent"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="md:col-span-5 group interactive">
+                        <div class="relative overflow-hidden aspect-square bg-zinc-200 mb-8">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
+                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-100 grayscale hover:grayscale-0">
+                            <div class="absolute inset-0 border border-blueprint-grid"></div>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-4xl font-syne font-bold mb-2 uppercase">WAPRASTA GLOBAL TECH</h3>
+                                <p class="font-sans text-[10px] font-bold tracking-[0.2em] uppercase opacity-50">COMPANY
+                                    PROFILE // 2024</p>
+                            </div>
+                            <a href="company-profile.html"
+                                class="w-12 h-12 border border-blueprint-accent rounded-full flex items-center justify-center transform group-hover:rotate-45 transition-transform duration-500 interactive shrink-0">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-blueprint-accent"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="md:col-span-7 mt-20 group interactive">
+                        <div class="relative overflow-hidden aspect-[21/9] bg-zinc-200 mb-8">
+                            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=2070&auto=format&fit=crop"
+                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-100 grayscale hover:grayscale-0">
+                            <div class="absolute inset-0 border border-blueprint-grid"></div>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-2xl md:text-4xl font-syne font-bold mb-2 uppercase">PADI DISEASE
+                                    DETECTION
+                                </h3>
+                                <p class="font-sans text-[10px] font-bold tracking-[0.2em] uppercase opacity-50">AI & DL
+                                    AGRICULTURE // 2024</p>
+                            </div>
+                            <a href="padi-detection.html"
+                                class="w-12 h-12 border border-blueprint-accent rounded-full flex items-center justify-center transform group-hover:rotate-45 transition-transform duration-500 interactive shrink-0">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-blueprint-accent"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lab / R&D Section -->
+        <section id="lab"
+            class="section-padding border-t border-blueprint-grid overflow-hidden bg-zinc-50 dark:bg-blueprint-dark">
+            <div class="container-custom">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+                    <div class="max-w-xl">
+                        <div class="font-syne font-bold text-[10px] tracking-[0.4em] uppercase opacity-40 mb-10">05 //
+                            THE LAB</div>
+                        <h2 class="text-4xl md:text-6xl font-syne font-black leading-none uppercase">RESEARCH & <br>
+                            EXPERIMENTS.</h2>
+                    </div>
+                    <div class="mt-8 md:mt-0 opacity-40 font-mono text-[10px] uppercase tracking-widest">
+                        Status: Active Research // Node: Alpha-7
+                    </div>
+                </div>
+
+                <div class="lab-grid interactive">
+                    <!-- Experiment 1 -->
+                    <div class="lab-card group relative scroll-reveal">
+                        <div class="xray-mesh opacity-[0.05]"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-6">
+                                    <span class="text-[7px] font-black tracking-[0.3em] opacity-40 uppercase">AI
+                                        Systems</span>
+                                    <span
+                                        class="text-[6px] font-black tracking-widest px-2 py-0.5 border border-blueprint-accent/20 text-blueprint-accent opacity-50">STABLE</span>
+                                </div>
+                                <h4 class="text-xl font-syne font-black mt-2 uppercase leading-tight">Neural Path <br>
+                                    Optimization</h4>
+                            </div>
+
+                            <div class="mt-6">
+                                <p
+                                    class="text-[9px] uppercase font-bold text-zinc-400 dark:text-zinc-500 leading-relaxed mb-6">
+                                    // ARCH_V.01 <br>
+                                    // GRAPH_PROP: ACTIVE <br>
+                                    // LATENCY: 12ms
+                                </p>
+                                <a href="#"
+                                    class="inline-flex items-center gap-2 text-[8px] font-black tracking-widest uppercase text-blueprint-accent group-hover:gap-3 transition-all interactive magnetic">
+                                    DETAILS <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experiment 2 -->
+                    <div class="lab-card group relative scroll-reveal" data-aos-delay="100">
+                        <div class="xray-mesh opacity-[0.05]"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-6">
+                                    <span class="text-[7px] font-black tracking-[0.3em] opacity-40 uppercase">Web
+                                        Arch</span>
+                                    <span
+                                        class="text-[6px] font-black tracking-widest px-2 py-0.5 border border-blueprint-accent/20 text-blueprint-accent opacity-50 uppercase">Rencana
+                                        Awal</span>
+                                </div>
+                                <h4 class="text-xl font-syne font-black mt-2 uppercase leading-tight">Micro-Frontend
+                                    <br> Orchestrator
+                                </h4>
+                            </div>
+
+                            <div class="mt-6">
+                                <p
+                                    class="text-[9px] uppercase font-bold text-zinc-400 dark:text-zinc-500 leading-relaxed mb-6">
+                                    // MOD_SWAP: ON <br>
+                                    // BUDGET: 50ms <br>
+                                    // SHADOW_DOM: TRUE
+                                </p>
+                                <a href="#"
+                                    class="inline-flex items-center gap-2 text-[8px] font-black tracking-widest uppercase text-blueprint-accent group-hover:gap-3 transition-all interactive magnetic">
+                                    DETAILS <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experiment 3 -->
+                    <div class="lab-card group relative scroll-reveal" data-aos-delay="200">
+                        <div class="xray-mesh opacity-[0.05]"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-6">
+                                    <span class="text-[7px] font-black tracking-[0.3em] opacity-40 uppercase">Design
+                                        ML</span>
+                                    <span
+                                        class="text-[6px] font-black tracking-widest px-2 py-0.5 border border-blueprint-accent/20 text-blueprint-accent opacity-50 uppercase">In
+                                        Development</span>
+                                </div>
+                                <h4 class="text-xl font-syne font-black mt-2 uppercase leading-tight">Procedural <br> UI
+                                    Gen</h4>
+                            </div>
+
+                            <div class="mt-6">
+                                <p
+                                    class="text-[9px] uppercase font-bold text-zinc-400 dark:text-zinc-500 leading-relaxed mb-6">
+                                    // SEED: 0xF4A2 <br>
+                                    // ENTROPY: 0.12 <br>
+                                    // NODES: 1024
+                                </p>
+                                <a href="#"
+                                    class="inline-flex items-center gap-2 text-[8px] font-black tracking-widest uppercase text-blueprint-accent group-hover:gap-3 transition-all interactive magnetic">
+                                    DETAILS <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experiment 4 -->
+                    <div class="lab-card group relative scroll-reveal" data-aos-delay="300">
+                        <div class="xray-mesh opacity-[0.05]"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-6">
+                                    <span class="text-[7px] font-black tracking-[0.3em] opacity-40 uppercase">Data
+                                        Mesh</span>
+                                    <span
+                                        class="text-[6px] font-black tracking-widest px-2 py-0.5 bg-blueprint-accent text-white uppercase">Live
+                                        Sync</span>
+                                </div>
+                                <h4 class="text-xl font-syne font-black mt-2 uppercase leading-tight">Real-time <br>
+                                    Analytics</h4>
+                            </div>
+
+                            <div class="mt-6">
+                                <p
+                                    class="text-[9px] uppercase font-bold text-zinc-400 dark:text-zinc-500 leading-relaxed mb-6">
+                                    // SPEED: 2GB/s <br>
+                                    // NODES: 32 <br>
+                                    // PART_ID: Z-9
+                                </p>
+                                <a href="#"
+                                    class="inline-flex items-center gap-2 text-[8px] font-black tracking-widest uppercase text-blueprint-accent group-hover:gap-3 transition-all interactive magnetic">
+                                    DETAILS <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dossier Section -->
+        <section id="dossier" class="section-padding border-t border-blueprint-grid overflow-hidden">
+            <div class="container-custom">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+                    <div class="md:col-span-5 sticky top-40 h-fit">
+                        <div class="font-syne font-bold text-[10px] tracking-[0.4em] uppercase opacity-40 mb-10">07 //
+                            DOSSIER
+                        </div>
+                        <h2 class="text-3xl lg:text-4xl font-syne font-black leading-none mb-10 split-word uppercase">
+                            TECHNICAL <br>
+                            CREDENTIALS.
+                        </h2>
+                        <p
+                            class="text-zinc-500 dark:text-zinc-400 font-bold uppercase text-[9px] tracking-widest max-w-xs leading-relaxed">
+                            A distilled view of my professional architecting capabilities and project history.
+                        </p>
+                    </div>
+
+                    <div class="md:col-span-7 flex flex-col gap-8 mt-12 md:mt-0">
+                        <!-- CV Card -->
+                        <div
+                            class="group relative bg-zinc-100 dark:bg-zinc-900/40 p-8 md:p-12 border border-blueprint-grid dark:border-white/5 overflow-hidden interactive scroll-reveal">
+                            <div
+                                class="absolute -top-4 -right-4 p-4 opacity-[0.03] dark:opacity-[0.05] font-syne font-black text-6xl md:text-7xl pointer-events-none select-none">
+                                CURRICULUM</div>
+                            <div class="relative z-10">
+                                <span
+                                    class="block text-[8px] font-black tracking-widest opacity-40 mb-4 uppercase">Architectural
+                                    Resume</span>
+                                <h3 class="text-3xl md:text-4xl font-syne font-bold mb-8 uppercase leading-tight">
+                                    PROFESSIONAL CV.
+                                </h3>
+                                <p
+                                    class="text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium text-sm max-w-md mb-10">
+                                    Comprehensive roadmap of technical skills, leadership history, and academic
+                                    milestones in AI & Systems Engineering.
+                                </p>
+                                <a href="#" download
+                                    class="inline-flex items-center gap-4 py-4 px-8 border border-blueprint-accent text-blueprint-accent font-syne font-bold text-xs uppercase tracking-widest hover:bg-blueprint-accent hover:text-white transition-all duration-500 interactive magnetic">
+                                    DOWNLOAD FILE <i class="fa-solid fa-file-pdf"></i>
+                                </a>
+                            </div>
+                            <div
+                                class="absolute bottom-0 right-0 w-32 h-32 opacity-[0.03] dark:opacity-[0.05] pointer-events-none">
+                                <i class="fa-solid fa-compass-drafting text-9xl"></i>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Card -->
+                        <div
+                            class="group relative bg-blueprint-accent p-8 md:p-12 border border-blueprint-grid overflow-hidden interactive scroll-reveal text-white">
+                            <div
+                                class="absolute -top-4 -right-4 p-4 opacity-[0.05] font-syne font-black text-6xl md:text-7xl italic transform select-none pointer-events-none">
+                                PORTFOLIO</div>
+                            <div class="relative z-10">
+                                <span
+                                    class="block text-[8px] font-black tracking-widest opacity-60 mb-4 uppercase">Project
+                                    Showcase</span>
+                                <h3 class="text-2xl md:text-4xl font-syne font-bold mb-8 uppercase leading-tight">CASE
+                                    STUDIES.</h3>
+                                <p class="opacity-70 leading-relaxed font-medium text-sm max-w-md mb-10">
+                                    Deep dive into architectural solutions, code hierarchy, and visual design systems
+                                    across selected works.
+                                </p>
+                                <a href="#" download
+                                    class="inline-flex items-center gap-4 py-4 px-8 border border-white text-white font-syne font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-blueprint-accent transition-all duration-500 interactive magnetic">
+                                    EXPAND DOSSIER <i class="fa-solid fa-folder-open"></i>
+                                </a>
+                            </div>
+                            <div
+                                class="absolute bottom-0 right-0 w-32 h-32 opacity-10 pointer-events-none transform translate-y-6 translate-x-6">
+                                <i class="fa-solid fa-microscope text-9xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Talk Section -->
+        <section id="talk"
+            class="section-padding border-t border-blueprint-grid bg-blueprint-accent text-white relative overflow-hidden">
+            <div class="talk-bg-text select-none">BLUEPRINT</div>
+
+            <div class="container-custom relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-end">
+                    <div class="lg:col-span-6">
+                        <div class="font-syne font-bold text-xs tracking-[0.4em] uppercase mb-10 opacity-60">08 // TALK
+                        </div>
+                        <h2
+                            class="text-4xl md:text-7xl font-syne font-black leading-[0.85] mb-12 scroll-reveal uppercase">
+                            READY TO <br> INNOVATE?</h2>
+
+                        <div class="flex flex-col gap-8">
+                            <a href="mailto:hello@blueprint.ai" class="group w-fit interactive">
+                                <span
+                                    class="text-xl md:text-4xl font-syne font-black block group-hover:translate-x-4 transition-transform duration-500">hello@blueprint.ai</span>
+                                <div
+                                    class="h-1 bg-white mt-2 w-full transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
+                                </div>
+                            </a>
+
+                            <div class="status-grid grid grid-cols-2 md:grid-cols-3 gap-10">
+                                <div>
+                                    <span
+                                        class="block text-[8px] font-black tracking-widest opacity-40 mb-2 uppercase">Current
+                                        Location</span>
+                                    <span class="text-xs font-bold font-syne uppercase">Surabaya, ID (7.25° S)</span>
+                                </div>
+                                <div>
+                                    <span
+                                        class="block text-[8px] font-black tracking-widest opacity-40 mb-2 uppercase">Local
+                                        Time</span>
+                                    <span id="local-time" class="text-xs font-bold font-syne uppercase">09:51:32
+                                        AM</span>
+                                </div>
+                                <div>
+                                    <span
+                                        class="block text-[8px] font-black tracking-widest opacity-40 mb-2 uppercase">Availability</span>
+                                    <span class="flex items-center gap-2 text-xs font-bold font-syne uppercase">
+                                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span> Open
+                                        for
+                                        Synergies
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 lg:col-start-8 grid grid-cols-2 gap-4">
+                        <a href="#" class="social-card group interactive magnetic">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                            <span class="block text-[10px] font-black tracking-[0.2em]">LINKEDIN</span>
+                        </a>
+                        <a href="#" class="social-card group interactive magnetic">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <span class="block text-[10px] font-black tracking-[0.2em]">TWITTER</span>
+                        </a>
+                        <a href="#" class="social-card group interactive magnetic">
+                            <i class="fa-brands fa-github"></i>
+                            <span class="block text-[10px] font-black tracking-[0.2em]">GITHUB</span>
+                        </a>
+                        <a href="#" class="social-card group interactive magnetic">
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span class="block text-[10px] font-black tracking-[0.2em]">TELEGRAM</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-20 px-10 border-t border-blueprint-grid">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
+                    <div class="max-w-xs">
+                        <div class="text-xl font-syne font-black mb-6">BP.EXPLORER</div>
+                        <p class="text-[9px] font-bold tracking-widest opacity-40 uppercase leading-relaxed">
+                            Architecting the next generation of digital experiences through the lens of artificial
+                            intelligence and structural design.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-20">
+                        <div>
+                            <span
+                                class="block text-[8px] font-black tracking-[0.4em] opacity-30 mb-6 uppercase">Navigation</span>
+                            <ul class="flex flex-col gap-4 text-[9px] font-black tracking-widest uppercase">
+                                <li><a href="#home"
+                                        class="hover:text-blueprint-accent transition-colors interactive">Home</a></li>
+                                <li><a href="#about"
+                                        class="hover:text-blueprint-accent transition-colors interactive">About</a>
+                                </li>
+                                <li><a href="#work"
+                                        class="hover:text-blueprint-accent transition-colors interactive">Work</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <span
+                                class="block text-[8px] font-black tracking-[0.4em] opacity-30 mb-6 uppercase">Legal</span>
+                            <ul class="flex flex-col gap-4 text-[9px] font-black tracking-widest uppercase">
+                                <li><a href="#"
+                                        class="hover:text-blueprint-accent transition-colors interactive">Privacy</a>
+                                </li>
+                                <li><a href="#"
+                                        class="hover:text-blueprint-accent transition-colors interactive">Terms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center text-[8px] font-black tracking-[0.5em] uppercase opacity-30 pt-10 border-t border-white/5">
+                    <div>© 2024 BLUEPRINT STUDIOS // ALL RIGHTS RESERVED</div>
+                    <div class="mt-4 md:mt-0">ESTABLISHED IN THE DIGITAL VOID</div>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>

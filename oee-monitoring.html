@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BP.EXPLORER // OEE MONITORING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syne:wght@400;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="antialiased font-sans">
+    <!-- Tailwind and Logic Script -->
+    <script src="js/script.js"></script>
+    <div class="grid-overlay"></div>
+    <div id="cursor-follower">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- Page Transition Overlay -->
+    <div id="page-transition">
+        <div class="transition-grid"></div>
+        <div class="loader-text uppercase">Architecting...</div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="image-modal"
+        class="fixed inset-0 z-[11000] bg-blueprint-bg/95 backdrop-blur-xl flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute top-10 right-10 z-[11001]">
+            <button id="close-modal"
+                class="w-12 h-12 border border-blueprint-grid rounded-full flex items-center justify-center hover:bg-blueprint-accent hover:text-white transition-all interactive">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="max-w-[90vw] max-h-[80vh] relative group cursor-zoom-out" id="modal-container">
+            <img id="modal-img" src=""
+                class="max-w-full max-h-full object-contain shadow-2xl border border-blueprint-grid" alt="Zoomed Image">
+            <div class="absolute -bottom-12 left-0 w-full text-center">
+                <span id="modal-caption" class="text-[10px] font-black tracking-[0.3em] uppercase opacity-50"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div id="theme-toggle" class="interactive magnetic">
+        <div class="w-2 h-2 rounded-full bg-blueprint-accent"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-6 transition-colors duration-300 glass-nav"
+        id="navbar">
+        <a href="index.html" class="flex items-center gap-3 md:gap-4 group interactive magnetic text-blueprint-accent">
+            <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-2"></i>
+            <span class="font-syne font-black text-[10px] md:text-xs tracking-widest uppercase">Return</span>
+        </a>
+        <div class="font-syne font-black text-lg md:text-xl tracking-tighter uppercase">PROJECT.LOG_01</div>
+    </nav>
+
+    <main class="pt-32 md:pt-40">
+        <!-- Project Hero -->
+        <header class="mb-20 md:mb-32">
+            <div class="container-custom">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 mb-12 md:mb-16">
+                    <div class="max-w-4xl">
+                        <div class="flex items-center gap-4 mb-4 md:mb-6">
+                            <div
+                                class="font-syne font-bold text-[10px] tracking-[0.3em] md:tracking-[0.4em] uppercase opacity-40">
+                                Industrial IoT //
+                                2024</div>
+                            <div class="h-[1px] w-8 md:w-12 bg-blueprint-accent opacity-30"></div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                                <span
+                                    class="text-[8px] md:text-[10px] font-black tracking-widest uppercase opacity-60">Status:
+                                    Active
+                                    Optimization</span>
+                            </div>
+                        </div>
+                        <h1
+                            class="text-4xl md:text-6xl lg:text-7xl font-syne font-black leading-[0.9] uppercase mb-6 tracking-tighter text-blueprint-accent">
+                            OEE MONITORING <br> SYSTEM</h1>
+                    </div>
+                    <div class="flex flex-col gap-8 lg:text-right lg:items-end">
+                        <div class="flex flex-col gap-6 lg:items-end">
+                            <div class="flex gap-3 md:gap-4">
+                                <span
+                                    class="px-3 md:px-4 py-2 border border-blueprint-accent/20 text-[8px] md:text-[10px] font-black tracking-widest uppercase bg-blueprint-accent/5 text-blueprint-accent">Industrial</span>
+                                <span
+                                    class="px-3 md:px-4 py-2 border border-blueprint-grid text-[8px] md:text-[10px] font-black tracking-widest uppercase">Analytics</span>
+                            </div>
+                            <p
+                                class="max-w-xs text-[8px] md:text-[10px] font-bold opacity-40 leading-relaxed uppercase tracking-[0.2em]">
+                                Real-time effectiveness tracking for industrial machinery using advanced data ingestion
+                                nodes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden border border-blueprint-grid rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
+                        class="project-hero-img interactive" alt="OEE System Preview">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-blueprint-dark/40 to-transparent pointer-events-none">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Project Core Sections -->
+        <section class="mb-24 md:mb-40">
+            <div class="container-custom">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-20">
+                    <div class="lg:col-span-4 flex flex-col gap-10 md:gap-16">
+                        <div class="spec-item">
+                            <span
+                                class="block text-[8px] font-black tracking-widest opacity-30 mb-2 uppercase">Industry</span>
+                            <span class="text-sm font-bold font-syne uppercase">Manufacturing & Smart Factory</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="block text-[8px] font-black tracking-widest opacity-30 mb-2 uppercase">Core
+                                Function</span>
+                            <span class="text-sm font-bold font-syne uppercase">Availability, Performance,
+                                Quality</span>
+                        </div>
+
+                        <div class="spec-item">
+                            <span class="block text-[8px] font-black tracking-widest opacity-30 mb-2 uppercase">Tech
+                                Stack</span>
+                            <div class="flex flex-wrap gap-4 mt-4">
+                                <div
+                                    class="w-10 h-10 border border-blueprint-grid flex items-center justify-center opacity-40 hover:opacity-100 transition-opacity interactive">
+                                    <img src="assets/logo/laravel-2.svg" class="w-6 h-6" alt="Laravel">
+                                </div>
+                                <div
+                                    class="w-10 h-10 border border-blueprint-grid flex items-center justify-center opacity-40 hover:opacity-100 transition-opacity interactive">
+                                    <img src="assets/logo/mysql-3.svg" class="w-6 h-6" alt="MySQL">
+                                </div>
+                                <div
+                                    class="w-10 h-10 border border-blueprint-grid flex items-center justify-center opacity-40 hover:opacity-100 transition-opacity interactive">
+                                    <img src="assets/logo/bootstrap-5-1.svg" class="w-6 h-6" alt="Bootstrap">
+                                </div>
+                                <div
+                                    class="w-10 h-10 border border-blueprint-grid flex items-center justify-center opacity-40 hover:opacity-100 transition-opacity interactive">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="spec-item mt-4">
+                            <a href="#" target="_blank"
+                                class="inline-flex items-center gap-4 py-3 px-6 border border-blueprint-accent text-blueprint-accent font-syne font-bold text-[10px] uppercase tracking-widest hover:bg-blueprint-accent hover:text-white transition-all duration-500 interactive magnetic">
+                                SOURCE_CODE [REPO] <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8">
+                        <div class="mb-20 md:mb-32">
+                            <h3
+                                class="text-3xl md:text-4xl font-syne font-black uppercase mb-8 md:mb-10 text-blueprint-accent inline-block border-b-4 border-blueprint-accent pb-2">
+                                The Efficiency Goal</h3>
+                            <p
+                                class="text-xl md:text-2xl font-medium leading-[1.1] mb-10 md:mb-12 opacity-80 uppercase tracking-tighter">
+                                Translating raw machine downtime and cycle counts into actionable performance metrics.
+                            </p>
+                            <p class="text-zinc-500 leading-relaxed font-sans mb-12 md:mb-16 text-base md:text-lg">
+                                The challenge was integrating diverse PLC outputs into a unified web interface. By
+                                implementing
+                                a high-frequency polling service, we provided floor managers with a live visual of
+                                Overall
+                                Equipment Effectiveness (OEE). The system identifies micro-stoppages that were
+                                previously
+                                invisible, leading to a significant increase in production throughput.
+                            </p>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                <div
+                                    class="bg-blueprint-grid p-10 border border-blueprint-grid group hover:bg-blueprint-accent/5 transition-colors">
+                                    <div class="text-4xl font-black font-syne mb-4 text-blueprint-accent">+15%</div>
+                                    <div class="text-[9px] font-black tracking-widest opacity-40 uppercase">Increase in
+                                        Production Throughput</div>
+                                </div>
+                                <div
+                                    class="bg-blueprint-grid p-10 border border-blueprint-grid group hover:bg-blueprint-accent/5 transition-colors">
+                                    <div class="text-4xl font-black font-syne mb-4 text-blueprint-accent">ZERO</div>
+                                    <div class="text-[9px] font-black tracking-widest opacity-40 uppercase">Unrecorded
+                                        Machine
+                                        Downtime</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Gallery -->
+                        <div class="mb-32">
+                            <div class="font-syne font-bold text-[10px] tracking-[0.4em] uppercase opacity-40 mb-10">
+                                System_Detailing // 01</div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="relative overflow-hidden aspect-square border border-blueprint-grid group cursor-zoom-in zoomable"
+                                    data-caption="Industrial_Interface_01">
+                                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800"
+                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                        alt="Industrial Image">
+                                    <div
+                                        class="absolute bottom-4 left-4 bg-blueprint-bg/80 backdrop-blur-md px-3 py-1 border border-blueprint-grid">
+                                        <span
+                                            class="text-[7px] font-black tracking-widest uppercase">01_Interface</span>
+                                    </div>
+                                </div>
+                                <div class="relative overflow-hidden aspect-square border border-blueprint-grid group cursor-zoom-in zoomable"
+                                    data-caption="Machine_Logic_Flow">
+                                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800"
+                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                        alt="Circuitry">
+                                    <div
+                                        class="absolute bottom-4 left-4 bg-blueprint-bg/80 backdrop-blur-md px-3 py-1 border border-blueprint-grid">
+                                        <span class="text-[7px] font-black tracking-widest uppercase">02_Logic</span>
+                                    </div>
+                                </div>
+                                <div class="relative overflow-hidden aspect-square border border-blueprint-grid group cursor-zoom-in zoomable"
+                                    data-caption="Terminal_Data_Stream">
+                                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
+                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                        alt="Cyber Security">
+                                    <div
+                                        class="absolute bottom-4 left-4 bg-blueprint-bg/80 backdrop-blur-md px-3 py-1 border border-blueprint-grid">
+                                        <span class="text-[7px] font-black tracking-widest uppercase">03_Data</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-32 pb-20 px-10 border-t border-blueprint-grid bg-blueprint-grid/20">
+        <div class="max-w-7xl mx-auto">
+            <!-- Next Project CTA -->
+            <div class="mb-32 text-center">
+                <div class="font-syne font-bold text-[10px] tracking-[0.5em] uppercase opacity-30 mb-8">Ready for more?
+                </div>
+                <a href="it-ticketing.html" class="group inline-block interactive magnetic">
+                    <h2 class="text-4xl md:text-7xl font-syne font-black uppercase mb-8 tracking-tighter">Next Project
+                        <i class="fa-solid fa-arrow-right ml-4 transition-transform group-hover:translate-x-4"></i>
+                    </h2>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24">
+                <div class="md:col-span-5">
+                    <div class="font-syne font-black text-2xl tracking-tighter mb-8">BP.EXPLORER</div>
+                    <p class="text-zinc-500 font-medium text-sm leading-relaxed mb-10 max-w-sm">
+                        Documenting the integration of neural logic and architectural web systems. A blueprint for the
+                        next generation of digital interfaces.
+                    </p>
+                    <div class="flex gap-6">
+                        <a href="#"
+                            class="w-10 h-10 border border-blueprint-grid flex items-center justify-center rounded-full hover:border-blueprint-accent hover:text-blueprint-accent transition-colors interactive">
+                            <i class="fa-brands fa-linkedin-in text-xs"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 border border-blueprint-grid flex items-center justify-center rounded-full hover:border-blueprint-accent hover:text-blueprint-accent transition-colors interactive">
+                            <i class="fa-brands fa-github text-xs"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 border border-blueprint-grid flex items-center justify-center rounded-full hover:border-blueprint-accent hover:text-blueprint-accent transition-colors interactive">
+                            <i class="fa-brands fa-twitter text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 grid grid-cols-2 lg:grid-cols-3 gap-12">
+                    <div>
+                        <h4 class="font-syne font-black text-[10px] tracking-widest uppercase mb-8 opacity-40">
+                            Navigation</h4>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="index.html"
+                                    class="text-xs font-bold uppercase hover:text-blueprint-accent transition-colors interactive">Home</a>
+                            </li>
+                            <li><a href="index.html#projects"
+                                    class="text-xs font-bold uppercase hover:text-blueprint-accent transition-colors interactive">Projects</a>
+                            </li>
+                            <li><a href="index.html#talk"
+                                    class="text-xs font-bold uppercase hover:text-blueprint-accent transition-colors interactive">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-syne font-black text-[10px] tracking-widest uppercase mb-8 opacity-40">Discovery
+                        </h4>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="#"
+                                    class="text-xs font-bold uppercase hover:text-blueprint-accent transition-colors interactive">Archive</a>
+                            </li>
+                            <li><a href="#"
+                                    class="text-xs font-bold uppercase hover:text-blueprint-accent transition-colors interactive">Experiments</a>
+                            </li>
+                            <li><a href="#"
+                                    class="text-xs font-bold uppercase hover:text-blueprint-accent transition-colors interactive">Manifesto</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-span-2 lg:col-span-1">
+                        <h4 class="font-syne font-black text-[10px] tracking-widest uppercase mb-8 opacity-40">Legal
+                        </h4>
+                        <ul class="flex flex-col gap-4">
+                            <li><span class="text-[10px] font-mono opacity-30">© 2024 BP.EXPLORER</span></li>
+                            <li><span class="text-[10px] font-mono opacity-30">ALL_RIGHTS_RESERVED</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

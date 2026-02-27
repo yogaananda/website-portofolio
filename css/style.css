@@ -1,0 +1,568 @@
+/* Blueprint Portfolio - Core Styling */
+
+:root {
+    --grid-size: 40px;
+    --blueprint-bg: #f8f9fa;
+    --blueprint-grid: rgba(79, 70, 229, 0.05);
+    --blueprint-text: #1e1b4b;
+    --blueprint-accent: #4f46e5;
+    --cursor-color: #f43f5e;
+    --section-spacing: clamp(60px, 10vw, 120px);
+}
+
+.dark-mode {
+    --blueprint-bg: #0a0a0b;
+    --blueprint-grid: rgba(255, 255, 255, 0.03);
+    --blueprint-text: #f8f9fa;
+    --blueprint-accent: #818cf8;
+    --cursor-color: #fb7185;
+}
+
+* {
+    cursor: none !important;
+}
+
+body {
+    background-color: var(--blueprint-bg);
+    color: var(--blueprint-text);
+    transition: background-color 0.5s ease, color 0.5s ease;
+    overflow-x: hidden;
+}
+
+/* Grid Overlay */
+.grid-overlay {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--blueprint-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--blueprint-grid) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Modern Dot & Ring Cursor */
+#cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 12000;
+}
+
+.cursor-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--cursor-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 12002;
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+.cursor-ring {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--cursor-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 12001;
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.cursor-hover .cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--cursor-color);
+    box-shadow: 0 0 12px var(--cursor-color);
+}
+
+.cursor-hover .cursor-ring {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(244, 63, 94, 0.1);
+    border-color: var(--cursor-color);
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.2);
+}
+
+/* Shared Components & Layouts */
+.oversized-text {
+    font-size: clamp(2rem, 9vw, 8rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+}
+
+.oversized-text span {
+    line-height: 0.85;
+    /* Tighter for a more architectural block look */
+}
+
+/* Text Highlights (Architectural Blocks) */
+.text-highlight {
+    position: relative;
+    padding: 0 0.4rem;
+    display: inline-block;
+}
+
+.text-highlight::before {
+    content: '';
+    position: absolute;
+    inset: 0.2rem -0.1rem;
+    background: var(--blueprint-accent);
+    opacity: 0.1;
+    z-index: -1;
+    border-left: 2px solid var(--blueprint-accent);
+}
+
+.dark-mode .text-highlight::before {
+    opacity: 0.15;
+}
+
+.text-highlight-solid {
+    background: var(--blueprint-accent);
+    color: white;
+    padding: 0 0.5rem;
+    display: inline-block;
+    font-weight: 900;
+}
+
+/* Personnel ID Badge */
+.personnel-id {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: var(--blueprint-accent);
+    color: white;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    border-radius: 2px;
+    position: relative;
+}
+
+.personnel-id::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 1px solid var(--blueprint-accent);
+    opacity: 0.3;
+}
+
+.personnel-id span {
+    opacity: 0.6;
+    font-weight: 400;
+}
+
+.section-padding {
+    padding: clamp(100px, 20vh, 220px) 0;
+}
+
+.container-custom {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+@media (max-width: 768px) {
+    .container-custom {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+}
+
+.glass-nav {
+    backdrop-filter: blur(20px) saturate(200%);
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(79, 70, 229, 0.15);
+}
+
+.dark-mode .glass-nav {
+    background: rgba(10, 10, 11, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#theme-toggle {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--blueprint-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    background-color: var(--blueprint-bg);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Page Transition Overlay */
+#page-transition {
+    position: fixed;
+    inset: 0;
+    background-color: var(--blueprint-accent);
+    z-index: 20000;
+    pointer-events: none;
+    transform: translateY(0);
+    /* Start covered for entry transition */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.transition-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+#page-transition .loader-text {
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 900;
+    font-size: 5vw;
+    letter-spacing: 0.2em;
+    opacity: 0;
+}
+
+/* Hero Micro-Interactions */
+.schematic-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.15;
+}
+
+/* Index-specific Styles (safe to stay global) */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background-color: var(--blueprint-bg);
+    z-index: 30000;
+    /* Higher than curtain (20000) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#preloader-bar-bg {
+    width: 300px;
+    height: 2px;
+    background-color: rgba(79, 70, 229, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+#preloader-bar {
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    background-color: var(--blueprint-accent);
+}
+
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--blueprint-accent);
+    z-index: 9999;
+}
+
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--blueprint-accent);
+    transform: translateX(-101%);
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+    transform: translateX(0);
+}
+
+/* X-Ray Hover Effects */
+.work-card-img-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.xray-mesh {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(79, 70, 229, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 70, 229, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.xray-scanline {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(to bottom, transparent, var(--blueprint-accent), transparent);
+    opacity: 0;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.work-card:hover .xray-mesh {
+    opacity: 1;
+}
+
+.work-card:hover .xray-scanline {
+    opacity: 0.5;
+    animation: xray-scan 2s linear infinite;
+}
+
+@keyframes xray-scan {
+    0% {
+        top: -10%;
+    }
+
+    100% {
+        top: 110%;
+    }
+}
+
+/* Lab Section Styles */
+#lab {
+    background-color: #f1f5f9;
+    /* slate-100 for better contrast against white cards */
+}
+
+.dark-mode #lab {
+    background-color: #050505;
+}
+
+.lab-card {
+    min-height: 400px;
+    background: white;
+    border: 1px solid var(--blueprint-grid);
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .lab-card {
+    background: #111113;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.lab-card:hover {
+    border-color: var(--blueprint-accent);
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px -12px rgba(79, 70, 229, 0.15);
+    z-index: 10;
+}
+
+.lab-card:hover .xray-mesh {
+    opacity: 0.12;
+}
+
+.lab-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+    .lab-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .lab-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.timeline-line {
+    position: absolute;
+    left: 3rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--blueprint-accent);
+    opacity: 0.8;
+    transform-origin: top;
+    transform: translateX(-50%) scaleY(0);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 1.25rem;
+    width: 14px;
+    height: 14px;
+    background-color: var(--blueprint-accent);
+    border: 2px solid white;
+    border-radius: 50%;
+    z-index: 10;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.path-item {
+    position: relative;
+    padding-left: clamp(2.5rem, 10vw, 5rem);
+}
+
+@media (max-width: 640px) {
+    .timeline-line {
+        left: 1.5rem;
+    }
+
+    .path-item {
+        padding-left: 3rem;
+    }
+}
+
+.social-card {
+    position: relative;
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 160px;
+}
+
+.social-card:hover {
+    background: white;
+    color: var(--blueprint-accent);
+}
+
+.social-card i {
+    font-size: 1.5rem;
+    margin-bottom: auto;
+    opacity: 0.5;
+    transition: transform 0.5s ease;
+}
+
+.social-card:hover i {
+    transform: translateY(-5px);
+    opacity: 1;
+}
+
+.talk-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(15vw, 25vw, 400px);
+    font-family: 'Syne', sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    color: white;
+    opacity: 0.01;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: -0.05em;
+}
+
+.status-grid {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    margin-top: 4rem;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.velocity-track-web,
+.velocity-track-ai {
+    display: flex;
+    width: max-content;
+}
+
+/* Project Detail Specifics */
+.project-hero-img {
+    aspect-ratio: 21/9;
+    width: 100%;
+    object-fit: cover;
+    filter: grayscale(1) brightness(0.7);
+    transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (max-width: 768px) {
+    .project-hero-img {
+        aspect-ratio: 16/9;
+    }
+}
+
+.project-hero-img:hover {
+    filter: grayscale(0) brightness(1);
+}
+
+.spec-item {
+    border-left: 1px solid var(--blueprint-grid);
+    padding-left: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .oversized-text {
+        font-size: clamp(2rem, 12vw, 4rem);
+    }
+
+    .section-padding {
+        padding: 60px 0;
+    }
+}

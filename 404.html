@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERROR 404 // NODE_NOT_FOUND</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚠️</text></svg>">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Space+Mono&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP CDNs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        // Check theme immediately to prevent flash
+        (function () {
+            const isDarkMode = localStorage.getItem('theme') === 'dark';
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark-mode', 'dark');
+                // Body class will be added by main script or here as fallback
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode', 'dark'));
+            }
+        })();
+    </script>
+
+    <style>
+        :root {
+            --glitch-color: #f43f5e;
+        }
+
+        body {
+            background-color: var(--blueprint-bg);
+            color: var(--blueprint-text);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .glitch-404 {
+            font-size: clamp(8rem, 25vw, 20rem);
+            font-weight: 900;
+            line-height: 0.8;
+            position: relative;
+            color: var(--blueprint-accent);
+            text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+                0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+            animation: glitch 500ms infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                    -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+                    -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+
+            14% {
+                text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                    -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+                    -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+
+            15% {
+                text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                    0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                    -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+
+            49% {
+                text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                    0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                    -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+
+            50% {
+                text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                    0.05em 0 0 rgba(0, 255, 0, 0.75),
+                    0 -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+
+            99% {
+                text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                    0.05em 0 0 rgba(0, 255, 0, 0.75),
+                    0 -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+
+            100% {
+                text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+                    -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+                    -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+        }
+
+        .radar-scanner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blueprint-accent), transparent);
+            z-index: 5;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .tech-sidebar {
+            position: fixed;
+            bottom: clamp(20px, 5vw, 40px);
+            left: clamp(20px, 5vw, 40px);
+            text-align: left;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            opacity: 0.5;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            z-index: 20;
+        }
+
+        .node-path {
+            color: var(--glitch-color);
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .glitch-404 {
+                font-size: 6rem;
+            }
+
+            .tech-sidebar {
+                position: static;
+                margin-top: 4rem;
+                text-align: center;
+                opacity: 0.3;
+            }
+
+            .blueprint-label {
+                display: none;
+            }
+        }
+
+        .return-btn {
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            border: 1px solid var(--blueprint-accent);
+            background: transparent;
+            color: var(--blueprint-accent);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .return-btn:hover {
+            background: var(--blueprint-accent);
+            color: white;
+            box-shadow: 0 0 30px rgba(79, 70, 229, 0.2);
+        }
+
+        .blueprint-label {
+            position: absolute;
+            font-size: 8px;
+            font-family: 'Space Mono', monospace;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="antialiased font-sans overflow-hidden">
+    <div class="grid-overlay"></div>
+    <div class="radar-scanner"></div>
+
+    <!-- Background Blueprint Labels -->
+    <div class="blueprint-label" style="top: 10%; left: 10%;">SECTOR_7-G // UNSTABLE</div>
+    <div class="blueprint-label" style="top: 40%; right: 5%;">STRUCTURAL_VOID_DETECTED</div>
+    <div class="blueprint-label" style="bottom: 15%; left: 50%;">RECURSION_ERROR: 0xDEADBEEF</div>
+
+    <div id="cursor-follower">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <div class="error-container">
+        <div class="personnel-id py-1 px-4 mb-6">
+            <span>ERROR_CORE:</span> 0x404_NOT_FOUND
+        </div>
+
+        <h1 class="glitch-404 font-syne" data-text="404">404</h1>
+
+        <div class="max-w-md mx-auto mt-8">
+            <h2 class="font-syne font-black text-2xl uppercase tracking-widest mb-4">Structural integrity compromised
+            </h2>
+            <p class="text-sm opacity-60 leading-relaxed font-sans">
+                The requested schematic node could not be retrieved from the central database. The coordinates lead to a
+                structural void in the system architecture.
+            </p>
+        </div>
+
+        <a href="index.html" class="return-btn font-syne interactive magnetic">
+            Recalibrate To Core Node
+        </a>
+    </div>
+
+    <div class="tech-sidebar">
+        <div class="node-path">// PATH: ROOT/ARCHIVE/NULL</div>
+        <div>LATENCY: 0.00ms</div>
+        <div>UPTIME: 99.9% (SYSTEM_CRASH_EMULATED)</div>
+        <div class="mt-2 text-[var(--glitch-color)] font-bold">WARNING: CORRUPTION DETECTED</div>
+    </div>
+
+    <script>
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        let mouseX = 0, mouseY = 0;
+        let ringX = 0, ringY = 0;
+        let dotX = 0, dotY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        gsap.ticker.add(() => {
+            const dt = 1.0 - Math.pow(1.0 - 0.2, gsap.ticker.deltaRatio());
+            dotX += (mouseX - dotX) * 0.5;
+            dotY += (mouseY - dotY) * 0.5;
+            ringX += (mouseX - ringX) * dt;
+            ringY += (mouseY - ringY) * dt;
+            if (cursorDot) gsap.set(cursorDot, { x: dotX, y: dotY });
+            if (cursorRing) gsap.set(cursorRing, { x: ringX, y: ringY });
+        });
+
+        // Radar Scanner Animation
+        gsap.fromTo(".radar-scanner",
+            { y: -10 },
+            { y: window.innerHeight + 10, duration: 4, repeat: -1, ease: "none" }
+        );
+
+        // Magnetic Button
+        document.querySelectorAll('.magnetic').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(el, { x: x * 0.4, y: y * 0.4, duration: 0.3 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" });
+            });
+        });
+
+        // 404 Random Flicker
+        function randomFlicker() {
+            gsap.to(".glitch-404", {
+                opacity: gsap.utils.random(0.8, 1),
+                duration: 0.05,
+                repeat: 3,
+                yoyo: true,
+                onComplete: () => {
+                    setTimeout(randomFlicker, gsap.utils.random(1000, 5000));
+                }
+            });
+        }
+        randomFlicker();
+    </script>
+</body>
+
+</html>
