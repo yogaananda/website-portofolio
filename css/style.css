@@ -435,7 +435,7 @@ body {
 .timeline-dot {
     position: absolute;
     left: 0;
-    top: 1.25rem;
+    top: 0.75rem;
     width: 14px;
     height: 14px;
     background-color: var(--blueprint-accent);
@@ -447,7 +447,7 @@ body {
 
 .path-item {
     position: relative;
-    padding-left: clamp(2.5rem, 10vw, 5rem);
+    padding-left: 1.5rem;
 }
 
 @media (max-width: 640px) {

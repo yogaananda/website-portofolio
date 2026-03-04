@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (timelineLine) {
             const updateTimeline = () => {
                 const pathItems = document.querySelectorAll('.path-item');
-                const container = document.querySelector('#path .md\\:col-span-7');
+                const container = document.getElementById('timeline-container');
                 const dots = document.querySelectorAll('.timeline-dot');
                 if (pathItems.length > 0 && dots.length > 0 && container) {
                     const containerRect = container.getBoundingClientRect();
